@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Juraport jura subject feature.
+ */
+
+include_once 'juraport_jura_subject.features.inc';
