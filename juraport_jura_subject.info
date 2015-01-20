@@ -56,6 +56,7 @@ features[field_instance][] = node-jura_subject-field_jura_subject_lawtext_rules
 features[field_instance][] = node-jura_subject-field_jura_subject_loan
 features[field_instance][] = node-jura_subject-field_jura_subject_network
 features[field_instance][] = node-jura_subject-field_jura_subject_online
+features[metatag][] = node
 features[node][] = jura_subject
 features[taxonomy][] = jura_category
 features[taxonomy][] = keywords
