@@ -66,3 +66,4 @@ features[variable][] = menu_parent_jura_subject
 features[variable][] = node_options_jura_subject
 features[variable][] = node_preview_jura_subject
 features[variable][] = node_submitted_jura_subject
+features[variable][] = pathauto_node_jura_subject_pattern
