@@ -2,6 +2,7 @@ name = Juraport jura subject
 description = Defines the Jura subject content type and related settings
 core = 7.x
 package = Juraport
+version = 7.x-0.1.0
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = field_collection
