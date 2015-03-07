@@ -5,3 +5,111 @@
  */
 
 include_once 'juraport_jura_subject.features.inc';
+
+/**
+ * Implements hook_views_api().
+ */
+function juraport_jura_subject_views_api() {
+	return array('api' => '3.0');
+}
+
+/**
+ * Implements template_preprocess_juraport_jura_subject_view_column_overview()
+ *
+ * Prepare each column with rows for the view template.
+ */
+function template_preprocess_juraport_jura_subject_view_column_overview(&$variables) {
+	$columns = array();
+	$column_number = 1;
+	$column_count = $variables['options']['columns'];
+	$rows = $variables['rows'];
+	// The (minimum) number of rows to go in each column
+	$column_row_count = floor(count($rows) / $column_count);
+	// If number of rows doesn't fit evenly in each column, we fill the extra
+	// rows in columns from left to right.
+	$extra = count($rows) % $column_count;
+	// Control position in array (for array_slice)
+	$offset = 0;
+
+	// Populate the columns
+	while ($offset < count($rows)) {
+		$current_column_row_count = $column_row_count;
+		// Do we need an extra row in this column?
+		if ($extra) {
+			$current_column_row_count++;
+			$extra--;
+		}
+		$column_class = 'jura-subject-overview-column-' . $column_number;
+		$columns[$column_class]['rows'] = array_slice($rows, $offset, $current_column_row_count);
+		$column_number++;
+		$offset += $current_column_row_count;
+	}
+
+	// Pass the populated columns on to the views template
+	$variables['columns'] = $columns;
+
+	// Add some very basic default CSS.
+	// We add it as inline because we need a dynamic column width.
+	$column_width = (100 / $column_count) . '%';
+	$css_options = array('group' => CSS_DEFAULT, 'type' => 'inline');
+	$css = ".jura-subject-overview .jura-subject-overview-column { width: $column_width; float: left; }";
+	drupal_add_css($css, $css_options);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function juraport_jura_subject_block_info() {
+	$blocks = array();
+
+	$blocks['jura_subject_overview'] = array(
+		'info' => t('Jura subject overview'),
+		'cache' => DRUPAL_CACHE_GLOBAL,
+	);
+
+	return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function juraport_jura_subject_block_view($delta = '') {
+	$block = array();
+
+	switch ($delta) {
+		case 'jura_subject_overview':
+			$block['subject'] = t('Overview');
+			$block['content'] = l(t('Jura subject overview'), 'emneoversigt', array(
+				'attributes' => array(
+					'class' => array('jura-subject-overview-link'),
+				),
+			));
+			// Build a form with 2 ctools jump menus
+			$form = drupal_get_form('juraport_jura_subject_jump_menu_form');
+			$block['content'] .= drupal_render($form);
+			break;
+	}
+
+	return $block;
+}
+
+/**
+ * Form builder; builds a form with two ctools jump menus.
+ */
+function juraport_jura_subject_jump_menu_form($form, &$form_state) {
+	ctools_include('jump-menu');
+	$options = array();
+
+	// Get all jura catogories saved in the system
+	$vocabulary = taxonomy_vocabulary_machine_name_load('jura_category');
+	$categories = taxonomy_get_tree($vocabulary->vid);
+	foreach ($categories as $category) {
+		$url = url('taxonomy/term/' . $category->tid);
+		$options[$url] = $category->name;
+	}
+	$form['jura_category_jump_menu_header']['#markup'] = '<h4>' . t('Pick a category') . '</h4>';
+	$form['jura_category_jump_menu'] = ctools_jump_menu(array(), $form_state, $options, array());
+
+	$form['jura_subject_jump_menu_header']['#markup'] = '<h4>' . t('Pick a subject') . '</h4>';
+	return $form;
+}
