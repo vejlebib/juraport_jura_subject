@@ -3,6 +3,7 @@ description = Defines the Jura subject content type and related settings
 core = 7.x
 package = Juraport
 version = 7.x-0.1.0
+files[] = juraport_jura_subject_plugin_style_column_overview.inc
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = field_collection
