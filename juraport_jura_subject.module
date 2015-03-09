@@ -110,6 +110,20 @@ function juraport_jura_subject_jump_menu_form($form, &$form_state) {
 	$form['jura_category_jump_menu_header']['#markup'] = '<h4>' . t('Pick a category') . '</h4>';
 	$form['jura_category_jump_menu'] = ctools_jump_menu(array(), $form_state, $options, array());
 
+	// Get all jura subjects in the system using EntityFieldQuery
+	$query = new EntityFieldQuery();
+	$options = array();
+	$query->entityCondition('entity_type', 'node')
+		->entityCondition('bundle', 'jura_subject')
+		->propertyCondition('status', NODE_PUBLISHED)
+		->propertyOrderBy('title');
+	$result = $query->execute();
+	$nodes = node_load_multiple(array_keys($result['node']));
+	foreach ($nodes as $node) {
+		$url = url('node/' . $node->nid);
+		$options[$url] = $node->title;
+	}
 	$form['jura_subject_jump_menu_header']['#markup'] = '<h4>' . t('Pick a subject') . '</h4>';
+	$form['jura_subject_jump_menu'] = ctools_jump_menu(array(), $form_state, $options, array());
 	return $form;
 }
