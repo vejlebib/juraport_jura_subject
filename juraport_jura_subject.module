@@ -7,13 +7,6 @@
 include_once 'juraport_jura_subject.features.inc';
 
 /**
- * Implements hook_views_api().
- */
-function juraport_jura_subject_views_api() {
-	return array('api' => '3.0');
-}
-
-/**
  * Implements template_preprocess_juraport_jura_subject_view_column_overview()
  *
  * Prepare each column with rows for the view template.
