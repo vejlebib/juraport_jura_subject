@@ -123,8 +123,11 @@ function juraport_jura_subject_jump_menu_form($form, &$form_state) {
 		$url = url('taxonomy/term/' . $category->tid);
 		$options[$url] = $category->name;
 	}
-	$form['jura_category_jump_menu_header']['#markup'] = '<h4>' . t('Pick a category') . '</h4>';
-	$form['jura_category_jump_menu'] = ctools_jump_menu(array(), $form_state, $options, array());
+	$form['jura_category_jump_menu'] = ctools_jump_menu(array(), $form_state, $options, array(
+		'hide' => TRUE,
+		'inline' => FALSE,
+		'choose' => t('- Choose a category -'),
+	));
 
 	// Get all jura subjects in the system using EntityFieldQuery
 	$query = new EntityFieldQuery();
