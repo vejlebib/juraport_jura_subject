@@ -80,7 +80,7 @@ function juraport_jura_subject_field_default_field_instances() {
       'rel_remove' => 'default',
       'title' => 'required',
       'title_label_use_field_label' => 1,
-      'title_maxlength' => 128,
+      'title_maxlength' => 255,
       'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
@@ -131,7 +131,7 @@ function juraport_jura_subject_field_default_field_instances() {
       'rel_remove' => 'default',
       'title' => 'required',
       'title_label_use_field_label' => 1,
-      'title_maxlength' => 128,
+      'title_maxlength' => 255,
       'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
@@ -216,7 +216,7 @@ function juraport_jura_subject_field_default_field_instances() {
       'rel_remove' => 'default',
       'title' => 'required',
       'title_label_use_field_label' => 1,
-      'title_maxlength' => 128,
+      'title_maxlength' => 255,
       'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
@@ -301,7 +301,7 @@ function juraport_jura_subject_field_default_field_instances() {
       'rel_remove' => 'default',
       'title' => 'required',
       'title_label_use_field_label' => 1,
-      'title_maxlength' => 128,
+      'title_maxlength' => 255,
       'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
@@ -386,7 +386,7 @@ function juraport_jura_subject_field_default_field_instances() {
       'rel_remove' => 'default',
       'title' => 'required',
       'title_label_use_field_label' => 1,
-      'title_maxlength' => 128,
+      'title_maxlength' => 255,
       'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
@@ -432,6 +432,125 @@ function juraport_jura_subject_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_juraport_information_box-field_information_box_content'
+  $field_instances['field_collection_item-field_juraport_information_box-field_information_box_content'] = array(
+    'bundle' => 'field_juraport_information_box',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_information_box_content',
+    'label' => 'Indhold',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 32,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_juraport_information_box-field_information_box_more'
+  $field_instances['field_collection_item-field_juraport_information_box-field_information_box_more'] = array(
+    'bundle' => 'field_juraport_information_box',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Include a more-link in this information box. This is optional and can be left blank if no information box is desired.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_information_box_more',
+    'label' => 'Mere link',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => '_blank',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'rel_remove' => 'default',
+      'title' => 'value',
+      'title_label_use_field_label' => 1,
+      'title_maxlength' => 128,
+      'title_value' => 'Læs mere her',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_juraport_information_box-field_information_box_title'
+  $field_instances['field_collection_item-field_juraport_information_box-field_information_box_title'] = array(
+    'bundle' => 'field_juraport_information_box',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_information_box_title',
+    'label' => 'Titel',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 31,
     ),
   );
 
@@ -764,19 +883,60 @@ function juraport_jura_subject_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-jura_subject-field_juraport_information_box'
+  $field_instances['node-jura_subject-field_juraport_information_box'] = array(
+    'bundle' => 'jura_subject',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_juraport_information_box',
+    'label' => 'Information box',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 43,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Description');
+  t('Include a more-link in this information box. This is optional and can be left blank if no information box is desired.');
+  t('Indhold');
+  t('Information box');
   t('Kategori');
   t('Keywords');
   t('Link titel');
   t('Love og regler i bearbejdet form');
   t('Lovtekster og regler');
   t('Lån på biblioteket');
+  t('Mere link');
   t('Netværk');
   t('Selvbetjening på nettet');
   t('Tekst');
   t('Teskt');
+  t('Titel');
 
   return $field_instances;
 }

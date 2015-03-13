@@ -13,6 +13,34 @@ function juraport_jura_subject_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_jura_subject_information|node|jura_subject|form';
+  $field_group->group_name = 'group_jura_subject_information';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'jura_subject';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Information',
+    'weight' => '9',
+    'children' => array(
+      0 => 'field_juraport_information_box',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Information',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-jura-subject-information field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_jura_subject_information|node|jura_subject|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_jura_subject_laws_rules|node|jura_subject|form';
   $field_group->group_name = 'group_jura_subject_laws_rules';
   $field_group->entity_type = 'node';
