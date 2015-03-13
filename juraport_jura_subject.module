@@ -66,6 +66,18 @@ function juraport_jura_subject_block_info() {
 		'info' => t('Jura subject overview'),
 		'cache' => DRUPAL_CACHE_GLOBAL,
 	);
+	// The functionality this block provides together with the information box
+	// field collection feature, would probably make more sense to have in its
+	// own module, as it not only concerns jura_subject node types, but also the
+	// basic_page node type.
+	// TODO: Make new module juraport_info_box which isolate the information box
+	// functionality. This new module should depend on juraport_jura_subject 
+	// (this module) and juraport_base (the basic page needs to be moved from
+	// the installation profile to juraport_base as a feature in this case).
+	$blocks['juraport_info_box_viewer'] = array(
+		'info' => t('Juraport information box viewer'),
+		'cache' => DRUPAL_CACHE_PER_PAGE,
+	);
 
 	return $blocks;
 }
@@ -87,6 +99,10 @@ function juraport_jura_subject_block_view($delta = '') {
 			// Build a form with 2 ctools jump menus
 			$form = drupal_get_form('juraport_jura_subject_jump_menu_form');
 			$block['content'] .= drupal_render($form);
+			break;
+		case 'juraport_info_box_viewer':
+			$block['subject'] = t('Information');
+			$block['content'] = juraport_jura_subject_get_information_boxes();
 			break;
 	}
 
@@ -123,7 +139,33 @@ function juraport_jura_subject_jump_menu_form($form, &$form_state) {
 		$url = url('node/' . $node->nid);
 		$options[$url] = $node->title;
 	}
-	$form['jura_subject_jump_menu_header']['#markup'] = '<h4>' . t('Pick a subject') . '</h4>';
-	$form['jura_subject_jump_menu'] = ctools_jump_menu(array(), $form_state, $options, array());
+	$form['jura_subject_jump_menu'] = ctools_jump_menu(array(), $form_state, $options, array(
+		'hide' => TRUE,
+		'inline' => FALSE,
+		'choose' => t('- Choose a subject -'),
+	));
 	return $form;
+}
+
+/**
+ * Returns a render-array with the information boxes for the current page.
+ */
+function juraport_jura_subject_get_information_boxes() {
+	$boxes = array();
+	// Only do something if the current page is a node
+	if ($node = menu_get_object()) {
+		// We could have used entity metadata wrapper, but in this case the normal
+		// Drupal way is actually much cleaner.
+		$items = field_get_items('node', $node, 'field_juraport_information_box');
+		if (!empty($items)) {
+			foreach ($items as $item) {
+				$boxes[] = field_view_value('node', $node, 'field_juraport_information_box', $item, array(
+					// Use the formatter that only renders the fields of the collection.
+					// See: field_collection_field_formatter_info()
+					'type' => 'field_collection_fields',
+				));
+			}
+		}
+	}
+	return $boxes;
 }
