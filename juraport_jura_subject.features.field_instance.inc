@@ -797,6 +797,42 @@ function juraport_jura_subject_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-jura_subject-field_jura_subject_maintained_by'
+  $field_instances['node-jura_subject-field_jura_subject_maintained_by'] = array(
+    'bundle' => 'jura_subject',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_jura_subject_maintained_by',
+    'label' => 'Redigeres af',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 4,
+    ),
+  );
+
   // Exported field_instance: 'node-jura_subject-field_jura_subject_network'
   $field_instances['node-jura_subject-field_jura_subject_network'] = array(
     'bundle' => 'jura_subject',
@@ -933,6 +969,7 @@ function juraport_jura_subject_field_default_field_instances() {
   t('Lån på biblioteket');
   t('Mere link');
   t('Netværk');
+  t('Redigeres af');
   t('Selvbetjening på nettet');
   t('Tekst');
   t('Teskt');
