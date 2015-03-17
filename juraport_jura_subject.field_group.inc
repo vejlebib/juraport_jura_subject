@@ -21,7 +21,7 @@ function juraport_jura_subject_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Information',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_juraport_information_box',
     ),
@@ -49,7 +49,7 @@ function juraport_jura_subject_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Love og regler i bearbejdet form',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_jura_subject_laws_rules',
     ),
@@ -77,7 +77,7 @@ function juraport_jura_subject_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Lovtekster og regler',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_jura_subject_lawtext_rules',
     ),
@@ -105,7 +105,7 @@ function juraport_jura_subject_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Lån på biblioteket',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'field_jura_subject_loan',
     ),
@@ -133,7 +133,7 @@ function juraport_jura_subject_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Netværk',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'field_jura_subject_network',
     ),
@@ -161,7 +161,7 @@ function juraport_jura_subject_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Selvbetjening på nettet',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_jura_subject_online',
     ),
