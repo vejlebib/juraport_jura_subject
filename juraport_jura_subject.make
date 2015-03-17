@@ -25,6 +25,9 @@ projects[metatag][version] = "1.4"
 projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = "2.0"
 
+projects[entityreference][subdir] = "contrib"
+projects[entityreference][version] = "1.1"
+
 ; Juraport modules
 projects[juraport_user][type] = "module"
 projects[juraport_user][download][type] = "git"
