@@ -60,13 +60,13 @@ function juraport_jura_subject_preprocess_node(&$variables) {
 		// Disable maintained by, by default (it might not be set)
 		$variables['display_maintained_by'] = FALSE;
 
+		// Check to see if a maintainer is set on this jura_subject node
 		$node_wrapper = entity_metadata_wrapper('node', $node);
 		$account = $node_wrapper->field_jura_subject_maintained_by->value();
-		// Only continue if the the maintained by field is referencing a valid user
-		// account and that account has a juraport_editor profile
-		if (!empty($account) && $profile = profile2_load_by_user($account, 'juraport_editor')) {
-			$variables['display_maintained_by'] = TRUE;
-
+		if (!empty($account)) {
+			// We will always have a juraport_editor profile here, because our custom
+			// entityreference selection view filters users without.
+			$profile = profile2_load_by_user($account, 'juraport_editor');
 			// Prepare metadata wrappers to setup the maintained_by message.
 			$profile_wrapper = entity_metadata_wrapper('profile2', $profile);
 			$library = taxonomy_term_load($profile_wrapper->field_jura_editor_library->getIdentifier());
@@ -77,9 +77,22 @@ function juraport_jura_subject_preprocess_node(&$variables) {
 			$variables['maintained_by'] = t('Maintained by @first_name @sur_name @employed at @libray', array(
 				'@first_name' => $profile_wrapper->field_jura_editor_firstname->value(),
 				'@sur_name' => $profile_wrapper->field_jura_editor_surname->value(),
-				'@employed' => $employed ? t('former employee') : t('employee'),
+				'@employed' => $employed ? t('employee') : t('former employee'),
 				'@libray' => $library_wrapper->name->value(),
 			));
+			$variables['last_updated'] = array(
+				'#prefix' => '<br>',
+				'#theme' => 'html_tag',
+				'#tag' => 'time',
+				'#value' => t('Last updated: !updated', array(
+					'!updated' => format_date($node->changed, 'long'),
+				)),
+				'#attributes' => array(
+					'datetime' => format_date($node->changed, 'custom', 'c'),
+				),
+			);
+			
+			$variables['display_maintained_by'] = TRUE;
 		}
 	}
 }
