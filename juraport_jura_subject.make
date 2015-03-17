@@ -24,3 +24,9 @@ projects[metatag][version] = "1.4"
 
 projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = "2.0"
+
+; Juraport modules
+projects[juraport_user][type] = "module"
+projects[juraport_user][download][type] = "git"
+projects[juraport_user][download][url] = "https://github.com/vejlebib/juraport_user.git"
+projects[juraport_user][download][branch] = "master"
