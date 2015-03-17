@@ -119,7 +119,6 @@ function juraport_jura_subject_views_default_views() {
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
-  $handler->display->display_options['relationships']['profile']['label'] = 'Juraport editor';
   $handler->display->display_options['relationships']['profile']['required'] = TRUE;
   $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
     'juraport_editor' => 'juraport_editor',
@@ -130,7 +129,6 @@ function juraport_jura_subject_views_default_views() {
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['label'] = '';
   $handler->display->display_options['fields']['name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
@@ -151,6 +149,7 @@ function juraport_jura_subject_views_default_views() {
   $handler->display->display_options['fields']['field_jura_editor_firstname']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_jura_editor_firstname']['alter']['text'] = '[field_jura_editor_firstname] [field_jura_editor_surname]';
   $handler->display->display_options['fields']['field_jura_editor_firstname']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_jura_editor_firstname']['type'] = 'text_plain';
   /* Field: Profile: Bibliotek */
   $handler->display->display_options['fields']['field_jura_editor_library']['id'] = 'field_jura_editor_library';
   $handler->display->display_options['fields']['field_jura_editor_library']['table'] = 'field_data_field_jura_editor_library';
@@ -175,7 +174,6 @@ function juraport_jura_subject_views_default_views() {
   /* Display: Entity Reference */
   $handler = $view->new_display('entityreference', 'Entity Reference', 'entityreference_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Juraport editor list';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'entityreference_style';
@@ -201,10 +199,9 @@ function juraport_jura_subject_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Juraport editor'),
+    t('Profile'),
     t('[field_jura_editor_firstname] [field_jura_editor_surname]'),
     t('Entity Reference'),
-    t('Juraport editor list'),
   );
   $export['juraport_editor_list'] = $view;
 
